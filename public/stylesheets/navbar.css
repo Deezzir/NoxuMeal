@@ -1,0 +1,204 @@
+nav{
+    background: #24454c;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 25px;
+    z-index: 9900;
+    border-bottom: 3px solid #def2f3;
+}
+nav .logo{
+    color: #def2f3;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    transition: left 0.3s ease;
+}
+
+nav .cntr {
+    text-align: center;
+}
+
+nav .nav-items{
+    display: flex;
+    flex: 1;
+    padding: 0 0 0 40px;
+}
+
+nav hr {
+    display: none;
+}
+
+nav .nav-items li,
+nav .sign-items li{
+    list-style: none;
+    padding: 0 15px;
+}
+nav .nav-items li a {
+    color: #def2f3;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+}
+nav .nav-items li a:hover{
+    color: #1093a7;
+}
+
+nav .sign-items {
+    float: right;
+}
+
+nav .sign-items li {
+    vertical-align: middle;
+    display: contents;
+}
+nav .sign-items .nav-button{
+    color: #def2f3;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid #def2f3;
+    transition: 0.2s ease-out;
+}
+
+nav .sign-items .nav-button:hover{
+    background-color: #1093a7;
+}
+
+nav .menu-icon,
+nav .cancel-icon {
+    width: 40px;
+    text-align: center;
+    margin: 0 50px;
+    font-size: 18px;
+    color: #def2f3;
+    cursor: pointer;
+    display: none;
+}
+nav .menu-icon span,
+nav .cancel-icon {
+    display: none;
+}
+
+nav .login a {
+    background: #f12020;
+}
+
+@media (max-width: 1245px) {
+    nav{
+        padding: 0 50px;
+    }
+}
+@media (max-width: 1140px){
+    nav{
+        padding: 0px;
+    }
+    nav .logo{
+        flex: 2;
+    }
+
+    nav .nav-items,
+    nav .sign-items {
+        position: fixed;
+        z-index: 99;
+        top: 70px;
+        width: 100%;
+        left: -100%;
+        height: 100%;
+        padding: 10px 50px 0 50px;
+        text-align: center;
+        background: #1093a7;
+        display: inline-block;
+        transition: left 0.3s ease;
+    }
+
+    nav .nav-items .button{
+        color: #def2f3;
+        padding: 10px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        background-color: transparent;
+        border: 1px solid #def2f3;
+    }
+
+    nav .nav-items .nav-button{
+        color: #def2f3;
+        background: #24454c;
+        padding: 10px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        border: 2px solid #def2f3;
+        display: block;
+        margin: 0 auto;
+        width: 70%;
+        font-size: 1.5rem;
+        transition: 0.2s ease-out;
+    }
+
+    nav .nav-items .nav-button:hover {
+        background: #589ba4;
+        color: #def2f3;
+    }
+
+    nav .nav-items li a:hover{
+        color: #24454c;
+    }
+
+    nav .nav-items.active{
+        left: 0px;
+    }
+
+    nav .nav-items.active hr {
+        display: block;
+    }
+
+    nav .nav-items li,
+    nav .sign-items li{
+        line-height: 40px;
+        margin: 25px 0;
+    }
+    nav .nav-items li a{
+        font-size: 1.5rem;
+    }
+    nav .menu-icon{
+        display: block;
+    }
+    nav .menu-icon span{
+        display: block;
+    }
+    nav .menu-icon span.hide {
+        display: none;
+    }
+    nav .cancel-icon.show{
+        display: block;
+    }
+}
+
+@media (max-width: 980px){
+    nav .menu-icon,
+    nav .cancel-icon {
+        margin: 0 20px;
+    }
+}
+@media (max-width: 350px){
+    nav .menu-icon,
+    nav .cancel-icon {
+        margin: 0 10px;
+        font-size: 16px;
+    }
+
+    nav .nav-items li a {
+        font-size: 1.2rem;
+    }
+
+    nav .nav-items .nav-button {
+        font-size: 1.2rem;
+    }
+}
+

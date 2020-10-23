@@ -1,0 +1,71 @@
+.image {
+    position: relative;
+    text-align: center;
+    color: black;
+}
+
+.parallax1 {
+    background-image: url("../images/main3.jpeg");
+    height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.caption {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    color: transparent;
+}
+
+.caption span.border {
+    border-radius: 5px;
+    background-color: transparent;
+    color: #24454c;
+    font-weight: 1000;
+    padding: 18px;
+    font-size: 3rem;
+    letter-spacing: 10px;
+}
+
+.grid2_2-container {
+    margin: auto 50px auto 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px 10px;
+    justify-items: center;
+    grid-template-areas:
+    ". ."
+    ". .";
+}
+
+.grid2_2-container .card {
+    background: #1093a7;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 25px;
+}
+
+.grid2_2-container .container {
+    text-align: left;
+    padding: 2px 16px;
+}
+
+.grid2_2-container .card .container p {
+    font-size: 0.8rem;
+}
+
+.grid2_2-container .card .container h3 {
+    font-size: 1.5rem;
+}
+
+.grid2_2-container .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.05);
+}

@@ -1,0 +1,29 @@
+<div class="form-popup" id="register">
+    <form action="" class="form-container">
+        <h1>Register</h1>
+        <p>Create your account</p>
+
+        <div class="input-container">
+            <input class="input-field" id="fname" type="text" placeholder="First Name">
+            <a class="cross fas fa-times" onclick="document.getElementById('fname').value = ''"></a>
+        </div>
+
+        <div class="input-container">
+            <input class="input-field" id="lname" type="text" placeholder="Last Name">
+            <a class="cross fas fa-times" onclick="document.getElementById('lname').value = ''"></a>
+        </div>
+
+        <div class="input-container">
+            <input class="input-field" type="email" id="email" placeholder="Email Address">
+            <a class="cross fas fa-times" onclick="document.getElementById('email').value = ''"></a>
+        </div>
+
+        <div class="input-container">
+            <input class="input-field" id="pswrd" type="password" placeholder="Password">
+            <a class="cross fas fa-times" onclick="document.getElementById('pswrd').value = ''"></a>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+        <a class="btn cancel" onclick="closeForm('register');">Close</a>
+    </form>
+</div>

@@ -1,0 +1,141 @@
+/* The popup form - hidden by default */
+.input-container{
+    width: 100%;
+    background: #def2f3;
+    border: 1px solid #a9a9a9;
+    display: inline-block;
+    margin: 5px 0 22px 0;
+}
+
+.input-container input:focus, .input-container input:active {
+    outline: none;
+}
+.form-container input[type=text],
+.form-container input[type=password],
+.form-container input[type=email] {
+    width: 85%;
+    padding: 15px;
+    font-size: 1rem;
+    color: black;
+    background: #def2f3;
+    border: 1px solid #def2f3;
+}
+
+.input-container a.cross {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    float: right;
+    margin: 15px 10px 15px;
+    width: 30px;
+    height: 30px;
+    border: none;
+}
+
+.input-container a.fa-times {
+    color: #24454c;
+    font-size: 1.2rem;
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    right: 0;
+    margin-top: 5px;
+    border: 5px solid #def2f3;
+    z-index: 9999;
+}
+
+.form-container {
+    max-width: 400px;
+    padding: 10px;
+    background-color: #24454c;
+}
+
+.form-container .btn,
+.form-container a.btn-cancel {
+    background-color: #1093a7;
+    color: #def2f3;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    margin-bottom:10px;
+    transition: 0.3s
+}
+
+.right form input,
+.right form .msgForm{
+    width: 100%;
+    font-size: 1.0625rem;
+    background: #def2f3;
+    border-radius: 5px;
+    padding-left: 10px;
+    border: 1px solid black;
+}
+
+.right form input:focus,
+.right form .msgForm:focus{
+    outline-color: #1093a7;
+}
+
+.right form input{
+    height: 35px;
+    color: black;
+    outline: none;
+}
+
+.right form .btn{
+    margin-top: 10px;
+}
+
+.right form textarea {
+    background: black;
+    border: 1px solid #def2f3;
+}
+
+.right form .btn button{
+    height: 40px;
+    width: 100%;
+    margin:auto; display:block;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: #1093a7;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.right form .btn button:hover{
+    background: #def2f3;
+    color: black;
+}
+
+.form-container .cancel {
+    background-color: #fa2b2b;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: #def2f3;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.form-container .btn:hover {
+    background: #def2f3;
+    color: black;
+}
+
+@media (max-width: 400px) {
+    .form-container input[type=text],
+    .form-container input[type=password],
+    .form-container input[type=email] {
+        width: 75%;
+    }
+}

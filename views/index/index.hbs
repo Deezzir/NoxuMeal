@@ -1,0 +1,93 @@
+<div class="image parallax1">
+    <div class="caption">
+        <span class="border">NOXUMEAL</span>
+    </div>
+    <div class="caption1">
+        <div class="border">
+            Get farm-fresh ingredients to cook delicious recipes, delivered for FREE to your doorstep.
+        </div>
+    </div>
+</div>
+
+<div class="info">
+    <center><h2>How it Works</h2></center>
+    <hr style="color:black"><br>
+    <div class="grid4-container">
+        <div class="info-card">
+            <img class="info-img" src="/images/main.jpg" alt="Food">
+            <div class="content">
+                <h3> Our Recipes from The World </h3>
+                <p>
+                    Our in-house culinary team collect special recipes all around the Globe for every taste.
+                </p>
+            </div>
+        </div>
+        <div class="info-card">
+            <img class="info-img" src="/images/choice.jpeg" alt="Food">
+            <div class="content">
+                <h3> Choose Everything </h3>
+                <p>
+                    We have a great set of recipes so you can choose and customize your meals. We give your freedom.
+                </p>
+            </div>
+        </div>
+        <div class="info-card">
+            <img class="info-img" src="/images/delivery.jpeg" alt="Food"">
+            <div class="content">
+                <h3> Free delivery </h3>
+                <p>
+                    Delivery cost is included into the meal price, so YOU don't need to worry.
+                    We deliver across Ontario.
+                </p>
+            </div>
+        </div>
+        <div class="info-card">
+            <img class="info-img" src="/images/eat.jpeg" alt="Food">
+                    <div class="content">
+                <h3> Enjoy </h3>
+                <p>
+                    Enjoy tasteful and easy-to-prepare meals that will fulfill your gastronomic desires.
+                    We got You!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax2">
+    <div class="caption2">
+        <span class="border">WHAT'S ON THE MENU THIS WEEK?</span>
+    </div>
+</div>
+
+<div class="info">
+    <span class="border1">WHAT'S ON THE MENU THIS WEEK?</span>
+    <div class="slider">
+        <a class="category active" data-target="dinner">Dinner</a>
+        <a class="category" data-target="breakfast">Breakfast</a>
+    </div>
+
+    <br>
+
+    <div class="grid3-container">
+        {{#each data }}
+        {{#if this.top }}
+        <div class="card">
+        <img src="{{img}}" alt="Food" style="width:100%;">
+            <div class="container">
+                <h3>{{title}}</h3>
+                <p>With
+                    {{#each contains}}
+                        {{this}}
+                    {{/each}}
+                </p>
+                <br>
+                <h4>Price: {{price}}$</h4>
+            </div>
+        </div>
+        {{/if}}
+        {{else}}
+            <center><h3>No Meals</h3></center>
+        {{/each}}
+    </div>
+</div>

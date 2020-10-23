@@ -1,0 +1,19 @@
+<div class="form-popup" id="login">
+    <form action="" class="form-container">
+        <h1>Login</h1>
+
+        <div class="input-container">
+            <input class="input-field" id="lemail" type="email" placeholder="Email Address">
+            <a class="cross fas fa-times" onclick="document.getElementById('lemail').value = ''"></a>
+        </div>
+
+        <div class="input-container">
+            <input class="input-field" id="lpswrd" type="text" placeholder="Password">
+            <a class="cross fas fa-times" onclick="document.getElementById('lpswrd').value = ''"></a>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+        <a class="btn cancel" onclick="closeForm('login');">Close</a>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="image parallax1">
+    <div class="caption">
+        <span class="border">Menu</span>
+    </div>
+</div>
+
+<div class="info">
+    <center><h2>Classic Meals</h2></center>
+    <hr style="color:black"><br>
+    <div class="grid2_2-container">
+        {{#each data }}
+            {{#unless this.top }}
+                <div class="card">
+                    <img src="{{img}}" alt="Food" style="width:100%;">
+                    <div class="container">
+                        <h3>{{title}}</h3>
+                        <p>With
+                            {{#each contains}}
+                                {{this}}
+                            {{/each}}
+                        </p>
+                        <br>
+                        <h4>Price: {{price}}$</h4>
+                    </div>
+                </div>
+            {{/unless}}
+        {{else}}
+            <center><h3>No Meals</h3></center>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title> {{title}} </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/stylesheets/footer.css">
+        <link rel="stylesheet" href="/stylesheets/navbar.css">
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        <link rel="stylesheet" href="/stylesheets/form.css">
+
+        <link rel="stylesheet" href="/stylesheets/{{file}}">
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="javascripts/navbar.js"></script>
+        <script src="javascripts/form.js"></script>
+        <link rel="icon" href="images/favicon.ico">
+
+    </head>
+<body>
+        <script>
+            window.onresize = reportWindowSize;
+        </script>
+
+        {{> navbar}}
+        {{> login }}
+        {{> register }}
+        <main>
+            {{{body}}}
+            <div id="overlay"></div>
+        </main>
+        {{> footer }}
+    </body>
+</html>
