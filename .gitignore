@@ -1,4 +1,4 @@
-keys.env
+config/keys.env
   
 # Logs
 logs
