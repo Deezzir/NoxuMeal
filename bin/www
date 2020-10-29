@@ -9,7 +9,7 @@ const path = __dirname + '/www'
 
 app.use(reload(path))
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT);
 app.set('port', port);
 
 /** Create HTTP server. **/

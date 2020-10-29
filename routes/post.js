@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const dotenv = require('dotenv');
-dotenv.config({path:"./keys.env"});
+dotenv.config({path:"config/keys.env"});
 
 const validation = require('../public/javascripts/validation')
 const meals = require('../public/javascripts/meals')
