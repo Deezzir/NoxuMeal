@@ -55,14 +55,19 @@ main .box {
     background-color: #589ba4;
 }
 
-.about-container input[type=text], .about-container input[type=password] {
+.about-container input[type=text],
+.about-container input[type=email],
+.about-container input[type=tel]{
     width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
+    outline: none;
     font-size: 0.8rem;
+    color: black;
     background: #def2f3;
     border: 1px solid #def2f3;
 }
+
 
 .about-container .btn {
     background-color: #24454c;
@@ -109,7 +114,9 @@ main .box {
         background-color: #589ba4;
     }
 
-    .about-container input[type=text], .about-container input[type=password] {
+    .about-container input[type=text],
+    .about-container input[type=email],
+    .about-container input[type=tel] {
         padding: 5px;
         width: 90%;
     }

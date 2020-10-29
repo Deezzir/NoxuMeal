@@ -1,29 +1,42 @@
 <div class="form-popup" id="register">
-    <form action="" class="form-container">
-        <h1>Register</h1>
-        <p>Create your account</p>
+    <form method="post" action="" class="form-container">
+        <div class="input-container top">
+            <h1>Register</h1>
+            <a class="fas fa-times cross" onclick="closeForm('register'); clearForm('register');"></a>
+        </div>
+        <p style="color: #589ba4">Create your account</p>
+        <br>
 
+        {{#if message.fname}}
+            <p id="fname">{{message.fname}}</p>
+        {{/if}}
         <div class="input-container">
-            <input class="input-field" id="fname" type="text" placeholder="First Name">
-            <a class="cross fas fa-times" onclick="document.getElementById('fname').value = ''"></a>
+            <input class="input-field" id="r1" type="text" name="fname" placeholder="First Name" value="{{values.fname}}">
         </div>
 
+        {{#if message.lname}}
+            <p id="lname">{{message.lname}}</p>
+        {{/if}}
         <div class="input-container">
-            <input class="input-field" id="lname" type="text" placeholder="Last Name">
-            <a class="cross fas fa-times" onclick="document.getElementById('lname').value = ''"></a>
+            <input class="input-field" id="r2" type="text" name="lname" placeholder="Last Name" value="{{values.lname}}">
         </div>
 
+        {{#if message.remail}}
+            <p id="remail">{{message.remail}}</p>
+        {{/if}}
         <div class="input-container">
-            <input class="input-field" type="email" id="email" placeholder="Email Address">
-            <a class="cross fas fa-times" onclick="document.getElementById('email').value = ''"></a>
+            <input class="input-field" id="r3" type="text"name="email" placeholder="Email Address" value="{{values.email}}">
         </div>
 
+        {{#if message.rpassword}}
+            <p id="rpswrd">{{message.rpassword}}</p>
+        {{/if}}
         <div class="input-container">
-            <input class="input-field" id="pswrd" type="password" placeholder="Password">
-            <a class="cross fas fa-times" onclick="document.getElementById('pswrd').value = ''"></a>
+            <input class="input-field" id="r4" type="password" name="password" placeholder="Password" value="{{values.password}}">
         </div>
+
+        <input type='hidden' name='action' value='register' />
 
         <button type="submit" class="btn">Register</button>
-        <a class="btn cancel" onclick="closeForm('register');">Close</a>
     </form>
 </div>

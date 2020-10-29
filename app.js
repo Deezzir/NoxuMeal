@@ -7,6 +7,8 @@ const exphbs = require("express-handlebars");
 const app = express();
 
 const index = require('./routes/index');
+const post = require('./routes/post');
+
 
 // view engine setup
 app.engine('.hbs', exphbs({
@@ -23,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-//app.use('/about', about)
+app.use('/', post)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

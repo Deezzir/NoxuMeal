@@ -13,6 +13,13 @@ router.get('/', function(req, res, next) {
       });
 });
 
+router.get('/dash', function(req, res, next) {
+    res.render('index/dash',
+        {title: "Dash Page",
+            layout: 'main'
+        });
+});
+
 /* GET about page. */
 router.get('/about', function(req, res, next) {
   res.render('index/about',
@@ -31,5 +38,6 @@ router.get('/menu', function(req, res, next) {
               layout: 'main'
       });
 });
+
 
 module.exports = router;

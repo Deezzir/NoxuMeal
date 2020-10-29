@@ -26,9 +26,9 @@
     border-radius: 5px;
     background-color: transparent;
     color: #24454c;
-    font-weight: 1000;
+    font-weight: 900;
     padding: 18px;
-    font-size: 3rem;
+    font-size: 4rem;
     letter-spacing: 10px;
 }
 
@@ -68,4 +68,40 @@
 .grid2_2-container .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     transform: scale(1.05);
+}
+
+@media (max-width: 830px) {
+    .grid2_2-container {
+        column-gap: 5%;
+    }
+
+    .grid2_2-container .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .grid2_2-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: ".";
+    }
+
+    .grid2_2-container .card {
+        width: 90%;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .grid2_2-container {
+        margin: auto 25px auto 25px;
+    }
+
+    .caption span.border {
+        font-size: 3rem;
+    }
+
+    .grid2_2-container .card {
+        width: 100%;
+    }
 }

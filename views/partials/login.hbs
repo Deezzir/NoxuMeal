@@ -1,19 +1,25 @@
 <div class="form-popup" id="login">
-    <form action="" class="form-container">
+    <form method="post" action="" class="form-container">
         <h1>Login</h1>
 
+        {{#if message.email}}
+            <p id="lemail">{{message.email}}</p>
+        {{/if}}
         <div class="input-container">
-            <input class="input-field" id="lemail" type="email" placeholder="Email Address">
-            <a class="cross fas fa-times" onclick="document.getElementById('lemail').value = ''"></a>
+            <input class="input-field" id="l1" type="text" name="lemail" placeholder="Email Address" value="{{values.lemail}}">
         </div>
 
+        {{#if message.password}}
+            <p id="lpswrd">{{message.password}}</p>
+        {{/if}}
         <div class="input-container">
-            <input class="input-field" id="lpswrd" type="text" placeholder="Password">
-            <a class="cross fas fa-times" onclick="document.getElementById('lpswrd').value = ''"></a>
+            <input class="input-field" id="l2" type="password" name="lpassword" placeholder="Password" value="{{values.lpassword}}">
         </div>
+
+        <input type='hidden' name='action' value='login' />
 
         <button type="submit" class="btn">Login</button>
 
-        <a class="btn cancel" onclick="closeForm('login');">Close</a>
+        <a class="btn cancel" onclick="clearForm('login'); closeForm('login');">Close</a>
     </form>
 </div>

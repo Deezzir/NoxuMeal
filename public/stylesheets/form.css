@@ -4,21 +4,38 @@
     background: #def2f3;
     border: 1px solid #a9a9a9;
     display: inline-block;
-    margin: 5px 0 22px 0;
+    margin: 5px 0 15px 0;
 }
 
-.input-container input:focus, .input-container input:active {
+.top{
+    margin: 5px 0 5px 0;
+    background: #24454c;
+    border: none;
+}
+
+.top h1 {
+    display: inline-block;
+    width: 70%;
+}
+
+.input-container input:focus,
+.input-container input:active {
     outline: none;
 }
 .form-container input[type=text],
 .form-container input[type=password],
 .form-container input[type=email] {
-    width: 85%;
+    width: 100%;
     padding: 15px;
     font-size: 1rem;
     color: black;
     background: #def2f3;
     border: 1px solid #def2f3;
+}
+
+.form-container p {
+    display: inline-block;
+    color: #def2f3;
 }
 
 .input-container a.cross {
@@ -27,15 +44,19 @@
     align-items: center;
     display: flex;
     float: right;
-    margin: 15px 10px 15px;
+    margin: 10px 10px 10px;
     width: 30px;
     height: 30px;
     border: none;
 }
 
 .input-container a.fa-times {
-    color: #24454c;
-    font-size: 1.2rem;
+    color: #def2f3;
+    font-size: 1.5rem;
+}
+
+.input-container a.fa-times:hover {
+    color: #fa2b2b;
 }
 
 .form-popup {
@@ -57,6 +78,7 @@
 .form-container a.btn-cancel {
     background-color: #1093a7;
     color: #def2f3;
+    outline: none;
     padding: 16px 20px;
     border: none;
     border-radius: 5px;
@@ -130,6 +152,7 @@
 .form-container .btn:hover {
     background: #def2f3;
     color: black;
+    outline: none;
 }
 
 @media (max-width: 400px) {

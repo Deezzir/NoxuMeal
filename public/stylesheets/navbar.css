@@ -200,5 +200,16 @@ nav .login a {
     nav .nav-items .nav-button {
         font-size: 1.2rem;
     }
+
+    nav .cntr {
+        text-align: center;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 270px){
+    nav .logo {
+        font-size: large;
+    }
 }
 
