@@ -132,6 +132,7 @@
 
 .grid4-container div p{
     width: 80%;
+    margin: 0 auto;
     color: black;
     text-align: center;
 }
