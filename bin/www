@@ -6,7 +6,6 @@ const reload = require('express-reload')
 
 const path = __dirname + '/www'
 
-
 app.use(reload(path))
 
 const port = normalizePort(process.env.PORT);
