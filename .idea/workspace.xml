@@ -11,9 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4603e0c-cf7f-4a30-a68f-e0687ed60d7c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/keys.env" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/javascripts/validation.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/routes/post.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/views/index/dash.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
@@ -97,7 +99,7 @@
       <workItem from="1602302289072" duration="1787000" />
       <workItem from="1603078006889" duration="50180000" />
       <workItem from="1603460883519" duration="1930000" />
-      <workItem from="1603921046297" duration="17140000" />
+      <workItem from="1603921046297" duration="17451000" />
     </task>
     <servers />
   </component>
@@ -116,6 +118,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="360" y="209" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603941468328">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="360" y="209" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800@0.0.1280.800" timestamp="1603941468328" />
     <state x="378" y="154" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602282586303">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
