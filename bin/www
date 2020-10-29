@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const app = require('../app');
-const debug = require('debug')('assignment:server');
+//const debug = require('debug')('assignment:server');
 const http = require('http');
-const reload = require('express-reload')
+//const reload = require('express-reload')
 
 const path = __dirname + '/www'
 
