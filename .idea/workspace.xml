@@ -38,6 +38,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="disabled" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -61,6 +62,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/views/index" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/public/images/logo1_w.svg" />
@@ -79,7 +81,7 @@
       <workItem from="1602302289072" duration="1787000" />
       <workItem from="1603078006889" duration="50180000" />
       <workItem from="1603460883519" duration="1930000" />
-      <workItem from="1603921046297" duration="19434000" />
+      <workItem from="1603921046297" duration="19980000" />
     </task>
     <servers />
   </component>
