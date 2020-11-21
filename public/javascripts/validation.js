@@ -11,7 +11,7 @@ var validation = {
 
         if (typeof lpassword !== 'string' || lpassword.length === 0) {
             passed = false;
-            message.password = "Please, enter your password";
+            message.password = "Please, enter a password";
         }
 
         return {
@@ -33,7 +33,7 @@ var validation = {
 
         if (typeof lname !== 'string' || lname.length < 3) {
             passed = false;
-            message.lname = "Please, last name two short";
+            message.lname = "Last name two short";
         }
 
         const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -45,7 +45,7 @@ var validation = {
         const re1 = /[^A-Za-z0-9]+/ig
         if (typeof password !== 'string' || password.length < 6 || password.length > 12 || re1.test(password)) {
             passed = false;
-            message.rpassword = "Please, enter your password";
+            message.rpassword = "Please, enter a valid password";
         }
 
         return {

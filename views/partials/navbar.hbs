@@ -11,16 +11,28 @@
             <li><a href="/about">About</a></li>
             <hr>
         </div>
-        <div class="sign-items">
-            <li><a class="nav-button"data-toggle="modal" href="#"
-                    onclick="closeForm('register'); openForm('login'); return false;">
-                Log in
-            </a></li>
-            <li><a class="nav-button" data-toggle="modal" href="#"
-                    onclick="closeForm('login'); openForm('register'); return false;">
-                Register
-            </a></li>
-        </div>
+        {{#if user}}
+            <div class="sign-items">
+                <li><a class="nav-button" data-toggle="modal" href=
+                        {{#if user.super_user}}"/sdash"{{else}}"/dash"{{/if}}>
+                    <b>{{user.first_name}} {{user.last_name}}</b>
+                </a></li>
+                <li><a class="nav-button" data-toggle="modal" href="/Logout">
+                    Logout
+                </a></li>
+            </div>
+        {{else}}
+            <div class="sign-items">
+                <li><a class="nav-button"data-toggle="modal" href="#"
+                        onclick="closeForm('register'); openForm('login'); return false;">
+                    Log in
+                </a></li>
+                <li><a class="nav-button" data-toggle="modal" href="#"
+                        onclick="closeForm('login'); openForm('register'); return false;">
+                    Register
+                </a></li>
+            </div>
+        {{/if}}
         <div class="cancel-icon">
             <span class="fas fa-times"></span>
         </div>

@@ -2,7 +2,9 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const exphbs = require("express-handlebars");
+const mongoose = require('mongoose')
+const session = require('express-session');
+const exphbs = require('express-handlebars');
 
 const app = express();
 
@@ -16,7 +18,7 @@ app.engine('.hbs', exphbs({
   helpers: {
     layoutsDir: './views/layouts',
     },
-    defaultLayout: 'main'}));
+  defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
@@ -24,8 +26,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized:true
+}));
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+})
+
 app.use('/', index);
-app.use('/', post)
+app.use('/', post);
+
+mongoose.connect(process.env.DB_CONNECT, {
+  useNewUrlParser : true,
+  useUnifiedTopology :true,
+  useCreateIndex : true
+})
+    .then(() => {
+      console.log("Connected to DB");
+    })
+    .catch(error => {
+      console.log(`Error while connecting: ${error}`);
+    });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

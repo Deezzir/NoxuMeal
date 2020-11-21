@@ -34,8 +34,10 @@ function clearForm(form) {
     if(form === "login") {
         let pswrd = document.getElementById('lpswrd')
         let email = document.getElementById('lemail')
+        let error = document.getElementById('error')
         if (pswrd) { pswrd.style.display = 'none'; }
         if (email) { email.style.display = 'none'; }
+        if (error) { error.style.display = 'none'; }
 
         document.getElementById('l1').value = '';
         document.getElementById('l2').value = '';
@@ -45,6 +47,9 @@ function clearForm(form) {
         let fname = document.getElementById('fname')
         let pswrd = document.getElementById('rpswrd')
         let email = document.getElementById('remail')
+        let error = document.getElementById('error')
+
+        if (error) { error.style.display = 'none'; }
         if (pswrd) { pswrd.style.display = 'none'; }
         if (email) { email.style.display = 'none'; }
         if (lname) { lname.style.display = 'none'; }

@@ -14,10 +14,30 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/dash', function(req, res, next) {
-    res.render('index/dash',
-        {title: "Dash Page",
-            layout: 'main'
-        });
+    if(req.session.user) {
+        res.render('index/dash',
+            {
+                userID: req.session.user._id,
+                layout: 'main',
+                file: "dash.css",
+                title: "DashBoard"
+            });
+    } else {
+        res.sendStatus(404);
+    }
+});
+
+router.get('/sdash', function(req, res, next) {
+    if(req.session.user && req.session.user.super_user) {
+        res.render('index/sdash',
+            {
+                layout: 'main',
+                file: "dash.css",
+                title: "DashBoard"
+            });
+    }else {
+        res.sendStatus(404);
+    }
 });
 
 /* GET about page. */
@@ -37,6 +57,11 @@ router.get('/menu', function(req, res, next) {
               data: meals.getDB(),
               layout: 'main'
       });
+});
+
+router.get('/Logout', function(req, res, next) {
+    req.session.destroy();
+    res.redirect("/")
 });
 
 

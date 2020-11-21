@@ -60,11 +60,16 @@ nav .sign-items li {
 nav .sign-items .nav-button{
     color: #def2f3;
     padding: 10px 20px;
+    margin-right: 5px;
     border-radius: 4px;
     text-decoration: none;
     background-color: transparent;
     border: 1px solid #def2f3;
     transition: 0.2s ease-out;
+}
+
+nav .sign-items li .nav-user{
+
 }
 
 nav .sign-items .nav-button:hover{
