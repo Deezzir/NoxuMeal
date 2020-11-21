@@ -24,7 +24,7 @@ var postMethods = {
                 res.redirect("/dash");
             })
             .catch((error) => {
-                console.log(`Error ${error} ${req.body}`);
+                console.log(`Error ${error}`);
 
                 res.render("index/index", {
                     title: "Main Page",
@@ -48,7 +48,6 @@ var postMethods = {
     },
 
     postInfo(res, req, params) {
-        console.log(req.body);
         const {passed, message, action} = req.body.action === "login" ? validation.checkLogin(req.body) :
             validation.checkRegister(req.body)
 

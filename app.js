@@ -6,11 +6,14 @@ const mongoose = require('mongoose')
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
+const MongoStore = require('connect-mongo')(session);
+
 const app = express();
 
 const index = require('./routes/index');
 const post = require('./routes/post');
 
+app.set('trust proxy', 1);
 
 // view engine setup
 app.engine('.hbs', exphbs({
@@ -26,20 +29,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized:true
-}));
-
-app.use((req, res, next) => {
-  res.locals.user = req.session.user;
-  next();
-})
-
-app.use('/', index);
-app.use('/', post);
-
 mongoose.connect(process.env.DB_CONNECT, {
   useNewUrlParser : true,
   useUnifiedTopology :true,
@@ -51,6 +40,33 @@ mongoose.connect(process.env.DB_CONNECT, {
     .catch(error => {
       console.log(`Error while connecting: ${error}`);
     });
+
+
+app.use(session({
+  cookie: {
+    httpOnly: true,
+    maxAge: 14 * 24 * 60 * 60 * 1000, // expires in 14 days
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 5 * 24 * 60 * 60,
+  }),
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+
+app.use(function(req,res,next){
+  if(!req.session){
+    return next(new Error('Error occured while creating a session'))
+  }
+  res.locals.user = req.session.user;
+  next();
+});
+
+app.use('/', index);
+app.use('/', post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
