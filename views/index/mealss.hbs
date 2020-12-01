@@ -122,6 +122,7 @@
 
 <div id="table" style="overflow-x:auto; display:none">
    <br>
+    <i class="fas fa-search icon"></i>
    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for meal by title">
    <br>
    <table id="myTable">
@@ -164,7 +165,7 @@
             <td><input class="input-field" type="text" name="category" placeholder="First Name" value="{{category}}"></td>
             <td><input class="input-field" type="text" name="price" placeholder="Price" value="{{price}}"></td>
             <td><input class="input-field" type="text" name="cook" placeholder="Cook Time" value="{{time}}"></td>
-            <td><select id="serv" name="serv">
+            <td><select name="serv">
                     <option value="{{serving}}" selected hidden>{{serving}}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -175,7 +176,7 @@
                 </select>
             </td>
             <td><input class="input-field" type="text" name="cal" placeholder="Calories" value="{{calPerS}}"></td>
-            <td><select id="top" name="top">
+            <td><select name="top">
                     <option value="{{top}}" selected hidden>{{top}}</option>
                     <option value="true">Top Meal</option>
                     <option value="false">Not Top Meal</option>
