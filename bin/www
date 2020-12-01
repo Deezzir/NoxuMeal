@@ -2,11 +2,11 @@
 const app = require('../app');
 const debug = require('debug')('assignment:server');
 const http = require('http');
-//const reload = require('express-reload')
+const reload = require('express-reload')
 
 const path = __dirname + '/www'
 
-//app.use(reload(path))
+app.use(reload(path))
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

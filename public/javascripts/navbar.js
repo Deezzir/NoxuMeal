@@ -31,6 +31,44 @@ window.onload = function () {
             off();
         }
     }
+
+    const dropdown = document.getElementsByClassName("dropdown-btn");
+
+    for (let i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+
+    const add = document.querySelector(".add")
+    const all = document.querySelector(".list")
+    const table = document.getElementById("table")
+    const addForm =document.getElementById("addForm")
+
+    if(add && all) {
+        add.addEventListener("click", function() {
+            add.classList.add("active")
+            all.classList.remove("active")
+
+            table.style.display = "none"
+            addForm.style.display = "block"
+        })
+
+
+        all.addEventListener("click",function () {
+            add.classList.remove("active")
+            all.classList.add("active")
+
+            table.style.display = "block"
+            addForm.style.display = "none"
+        });
+    }
 }
 
 function reportWindowSize() {
@@ -38,4 +76,5 @@ function reportWindowSize() {
         document.querySelector(".cancel-icon").click();
     }
 }
+
 

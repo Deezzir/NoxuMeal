@@ -34,5 +34,34 @@ router.post("/menu", (req, res) => {
     postMethods.postInfo(res, req, params);
 });
 
+router.post("/meals", (req, res) => {
+    const params = {
+        view: "index/mealss",
+        title: "Meals",
+        file: "meals.css",
+    };
+    postMethods.postInfo(res, req, params);
+});
+
+router.post("/update", (req, res) => {
+    const params = {
+        view: "index/mealss",
+        title: "Meals",
+        file: "meals.css",
+    };
+    req.body.action = "updateMeal"
+    postMethods.postInfo(res, req, params);
+});
+
+router.post("/delete", (req, res) => {
+    const params = {
+        view: "index/mealss",
+        title: "Meals",
+        file: "meals.css",
+    };
+    req.body.action = "deleteMeal"
+    postMethods.postInfo(res, req, params);
+});
+
 
 module.exports = router;

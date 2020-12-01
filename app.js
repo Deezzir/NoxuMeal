@@ -5,10 +5,12 @@ const logger = require('morgan');
 const mongoose = require('mongoose')
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const fileUpload = require('express-fileupload');
 
 const MongoStore = require('connect-mongo')(session);
 
 const app = express();
+
 
 const index = require('./routes/index');
 const post = require('./routes/post');
@@ -28,6 +30,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(fileUpload());
 
 mongoose.connect(process.env.DB_CONNECT, {
   useNewUrlParser : true,
@@ -50,6 +54,8 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 5 * 24 * 60 * 60,
+    autoRemove: 'interval',
+    autoRemoveInterval: 20
   }),
   secret: process.env.SECRET,
   resave: false,

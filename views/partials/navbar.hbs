@@ -13,10 +13,23 @@
         </div>
         {{#if user}}
             <div class="sign-items">
-                <li><a class="nav-button" data-toggle="modal" href=
-                        {{#if user.super_user}}"/sdash"{{else}}"/dash"{{/if}}>
-                    <b>{{user.first_name}} {{user.last_name}}</b>
-                </a></li>
+                <li>
+                        <div class="dropdown">
+                            <a  class="nav-button" data-toggle="modal">
+                                {{user.first_name}} {{user.last_name}}
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                {{#if user.super_user}}
+                                    <a href="/sdash">Dashboard</a>
+                                    <a href="/meals">Manage Meals</a>
+                                {{else}}
+                                    <a href="/dash">Dashboard</a>
+                                    <a href="#">Orders</a>
+                                {{/if}}
+                            </div>
+                        </div>
+                </li>
                 <li><a class="nav-button" data-toggle="modal" href="/Logout">
                     Logout
                 </a></li>

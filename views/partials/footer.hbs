@@ -8,8 +8,13 @@
                 <div class="nav">
                     <p><i class="fas fa-info"></i><a href="/about"><span>About Us</span></a></p>
                     <p><i class="fas fa-th-list"></i><a href="/menu"><span>On The Menu</span></a></p>
-                    <p><i class="fas fa-user"></i><a href="#" onclick="openForm('login'); closeForm('register'); on(); return false;"><span>Login In</span></a></p>
-                    <p><i class="fas fa-sign-in-alt"></i><a href="#" onclick="openForm('register'); closeForm('login'); on(); return false;"><span>Register</span></a></p>
+                    {{#if user}}
+                        <p><i class="fas fa-user-circle"></i><a href={{#if user.super_user}}"/sdash"{{else}}"/dash"{{/if}}><span>Dashboard</span></a></p>
+                        <p><i class="fas fa-sign-out-alt"></i><a href="/Logout"><span>Logout</span></a></p>
+                    {{else}}
+                        <p><i class="fas fa-user"></i><a href="#" onclick="openForm('login'); closeForm('register'); on(); return false;"><span>Login In</span></a></p>
+                        <p><i class="fas fa-sign-in-alt"></i><a href="#" onclick="openForm('register'); closeForm('login'); on(); return false;"><span>Register</span></a></p>
+                    {{/if}}
                 </div>
             </div>
         </div>

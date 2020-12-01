@@ -35,13 +35,11 @@
 .grid2_2-container {
     margin: auto 50px auto 50px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px 10px;
     justify-items: center;
     grid-template-areas:
-    ". ."
-    ". .";
+    ". . ."
 }
 
 .grid2_2-container .card {
@@ -77,6 +75,11 @@
 
     .grid2_2-container .card {
         width: 100%;
+    }
+
+    .grid2_2-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: ". .";
     }
 }
 

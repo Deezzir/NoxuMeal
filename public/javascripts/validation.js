@@ -1,6 +1,6 @@
 var validation = {
-    checkLogin(body) {
-        const {lemail, lpassword, action} = body;
+    checkLogin(req) {
+        const {lemail, lpassword, action} = req.body;
         let passed = true;
         let message = {email: "", password: ""};
 
@@ -17,12 +17,12 @@ var validation = {
         return {
             passed: passed,
             message: message,
-            action: "login"
+            action: action
         };
     },
 
-    checkRegister(body) {
-        const {fname, lname, email, password, action} = body;
+    checkRegister(req) {
+        const {fname, lname, email, password, action} = req.body;
         let passed = true;
         let message = {fname: "", lname: "", remail: "", rpassword: ""};
 
@@ -51,9 +51,36 @@ var validation = {
         return {
             passed: passed,
             message: message,
-            action: "register"
+            action: action
         };
     },
+
+    checkMeal(req, img=true) {
+        let passed = true;
+        let message = {merror : ""};
+        let imageReg = /[\/.](gif|jpg|jpeg|tiff|png)$/i;
+
+        Object.keys(req.body).forEach(key => {
+            if (typeof req.body[key] !== 'string' || req.body[key].length === 0) {
+                passed = false;
+                message.merror = "Please, enter valid info";
+            }
+        })
+        if(img)
+            if(!req.files) {
+                passed = false;
+                message.ierror = "Please, upload an image";
+            } else if(!imageReg.test(req.files.image.name)) {
+                passed = false;
+                message.ierror = "Please, upload a valid an image";
+            }
+
+        return {
+            passed: passed,
+            message: message,
+            action: req.body.action
+        };
+    }
 
 }
 

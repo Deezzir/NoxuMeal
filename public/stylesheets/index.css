@@ -58,7 +58,6 @@
     letter-spacing: 10px;
 }
 
-.caption2 span.border,
 .border1 {
     background-color: #24454c;
     color: #def2f3;
@@ -66,6 +65,8 @@
     padding: 18px;
     font-size: 1.3rem;
     letter-spacing: 8px;
+    width: 65%;
+    margin: 0 auto ;
 }
 
 .caption1 div.border {
@@ -78,10 +79,6 @@
     font-weight: 700;
     font-size: 0.9375rem;
     letter-spacing: 5px;
-}
-
-.border1 {
-    display: none;
 }
 
 .slider {

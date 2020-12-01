@@ -1,13 +1,15 @@
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
+const path = require("path");
+
 const bcrypt = require('bcrypt')
 const userModel = require("../../models/Users")
 const validation = require('./validation')
 
-const meals = require('./meals')
+const mealModel = require('../../models/Meals')
 
-var postMethods = {
+const postMethods = {
     send(res, req) {
         const msg = {
             to: req.body.email,
@@ -23,23 +25,24 @@ var postMethods = {
             .then(() => {
                 res.redirect("/dash");
             })
-            .catch((error) => {
+            .catch(async function(error){
                 console.log(`Error ${error}`);
-
+                let Meals = await mealModel.find().lean();
                 res.render("index/index", {
                     title: "Main Page",
                     file: "index.css",
-                    data: meals.getDB(),
+                    data: Meals,
                     layout: 'main',
                 });
             });
     },
 
-    renderError(res, req, params) {
+    async renderError(res, req, params) {
+        let Meals = await mealModel.find().lean();
         res.render(params.view, {
             title: params.title,
             file: params.file,
-            data: meals.getDB(),
+            data: Meals,
             kak: params.action,
             layout: 'main',
             message: params.message,
@@ -47,70 +50,172 @@ var postMethods = {
         });
     },
 
-    postInfo(res, req, params) {
-        const {passed, message, action} = req.body.action === "login" ? validation.checkLogin(req.body) :
-            validation.checkRegister(req.body)
+    login(res, req, params) {
+        params.action = "login";
 
-        if (passed && action === 'login') {
-            userModel.findOne({
-                email: req.body.lemail
-            })
-                .then((user) => {
-                    if (user === null) {
-                        params.action = action;
-                        params.message = {"error": "User Does Not Exist"};
-                        this.renderError(res, req, params);
-                    } else {
-                        bcrypt.compare(req.body.lpassword, user.password)
-                            .then((match) => {
-                                if (match) {
-                                    req.session.user = user;
-                                    if (user.super_user) {
-                                        res.redirect(`/sdash`)
-                                    } else {
-                                        res.redirect(`/sdash`)
-                                    }
-
+        userModel.findOne({
+            email: req.body.lemail
+        })
+            .then((user) => {
+                if (user === null) {
+                    params.message = {"lerror": "User Does Not Exist"};
+                    this.renderError(res, req, params)
+                        .then(() => {});
+                } else {
+                    bcrypt.compare(req.body.lpassword, user.password)
+                        .then((match) => {
+                            if (match) {
+                                req.session.user = user;
+                                if (req.session.user.super_user) {
+                                    res.redirect(`/sdash`)
                                 } else {
-                                    params.action = action;
-                                    params.message = {"error": "Invalid Password"};
-                                    this.renderError(res, req, params);
+                                    res.redirect(`/dash`)
                                 }
-                            })
-                            .catch((error) => {
-                                console.log(`Error while comparing passwords: ${error}`)
-                            })
-                    }
-                })
-                .catch((error) => {
-                    console.log(`Error while finding user: ${error}`)
-                })
-        } else if (passed && action === 'register') {
-            const user = new userModel({
-                first_name: req.body.fname,
-                last_name: req.body.lname,
-                email: req.body.email,
-                password: req.body.password
-            });
+                            } else {
+                                params.message = {"lerror": "Invalid Password"};
+                                this.renderError(res, req, params)
+                                    .then(() => {});
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(`Error while comparing passwords: ${error}`)
+                        })
+                }
+            })
+            .catch((error) => {
+                console.log(`Error while finding user: ${error}`)
+            })
+    },
 
-            user.save()
-                .then(() => {
-                    req.session.user = user;
-                    this.send(res, req);
-                })
-                .catch((error) => {
-                    if (error.name === 'MongoError' && error.code === 11000) {
-                        params.action = action;
-                        params.message = {"error": "User Already Exists"};
-                        this.renderError(res, req, params);
-                    } else {
-                        console.log(`Error while saving user: ${error}`)
-                    }
-                })
+    register(res, req, params) {
+        params.action = "register";
+
+        const user = new userModel({
+            first_name: req.body.fname,
+            last_name: req.body.lname,
+            email: req.body.email,
+            password: req.body.password
+        });
+
+        user.save()
+            .then(() => {
+                req.session.user = user;
+                this.send(res, req);
+            })
+            .catch((error) => {
+                if (error.name === 'MongoError' && error.code === 11000) {
+                    params.message = {"rerror": "User Already Exists"};
+                    this.renderError(res, req, params)
+                        .then(() => {
+                        });
+                } else {
+                    console.log(`Error while saving user: ${error}`)
+                }
+            })
+    },
+
+    addMeal(res,req) {
+        console.log(req.body)
+        const meal = new mealModel({
+            contains: req.body.contain.split(','),
+            top: req.body.top,
+            title: req.body.title,
+            desc: req.body.desc,
+            category: req.body.category,
+            price: parseFloat(req.body.price),
+            time: parseInt(req.body.cook),
+            serving: parseInt(req.body.serv),
+            calPerS: parseInt(req.body.cal)
+        });
+
+        meal.save()
+            .then((mealS) => {
+                req.files.image.name = `/uploads/${mealS.title}${path.parse(req.files.image.name).ext}`;
+                req.files.image.mv(`public${req.files.image.name}`)
+                    .then(() => {
+                        mealModel.updateOne({
+                            _id: mealS._id
+                        }, {
+                            img: req.files.image.name
+                        })
+                            .then(() => {
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+                res.redirect('/meals')
+            })
+            .catch((error) => {
+                console.log(`Error while saving meal: ${error}`)
+            })
+    },
+
+    updateMeal(res, req) {
+        console.log(req.body)
+        mealModel.updateOne({
+            title: req.body.title
+        }, {
+            $set: {
+                contains: req.body.contain.split(','),
+                top: req.body.top,
+                title: req.body.title,
+                desc: req.body.desc,
+                category: req.body.category,
+                price: parseFloat(req.body.price),
+                time: parseInt(req.body.cook),
+                serving: parseInt(req.body.serv),
+                calPerS: parseInt(req.body.cal)
+            }
+        })
+            .exec()
+            .then(() => {res.redirect("/meals")})
+            .catch((err) => console.log(err));
+    },
+
+    deleteMeal(res,req) {
+        console.log(req.body)
+        mealModel.deleteOne({
+            title: req.body.title
+        })
+            .exec()
+            .then(() => {res.redirect("/meals")})
+            .catch((err) => console.log(err));
+    },
+
+    postInfo(res, req, params) {
+        if(req.body.action === "login" ) {
+            var {passed, message, action} = validation.checkLogin(req);
+        } else if(req.body.action === "register")  {
+            var {passed, message, action} = validation.checkRegister(req)
+        } else if(req.body.action === "addMeal") {
+            var {passed, message, action} = validation.checkMeal(req)
+        } else if(req.body.action === "updateMeal") {
+            var {passed, message, action} = validation.checkMeal(req, false)
+        } else if(req.body.action === "deleteMeal") {
+            var {passed, action} = {passed: true, action: "deleteMeal"}
+        }
+
+        if(passed) {
+            if (action === 'login') {
+                this.login(res,req,params)
+            } else if (action === 'register') {
+                this.register(res,req,params)
+            } else if(action === 'addMeal') {
+                this.addMeal(res, req, params)
+            } else if(action === 'updateMeal') {
+                this.updateMeal(res,req)
+            } else if(action === 'deleteMeal') {
+                this.deleteMeal(res,req)
+            }
         } else {
             params.action = action;
             params.message = message;
-            this.renderError(res, req, params);
+            this.renderError(res, req, params)
+                .then(() => {});
         }
     }
 }

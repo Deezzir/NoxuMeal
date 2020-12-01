@@ -1,4 +1,4 @@
-var meals = {
+var meals_f = {
     fakeDB: [{
                 id: 1,
                 title: "Borsch",
@@ -134,4 +134,4 @@ var meals = {
 }
 
 
-module.exports = meals;
+module.exports = meals_f;

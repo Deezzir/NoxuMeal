@@ -57,4 +57,42 @@ function clearForm(form) {
     }
 }
 
+ function myFunction() {
+     var input, filter, table, tr, td, i, txtValue;
+     input = document.getElementById("myInput");
+     filter = input.value.toUpperCase();
+     table = document.getElementById("myTable");
+     tr = table.getElementsByTagName("tr");
+
+     for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[0];
+         if (td) {
+             txtValue = td.textContent || td.innerText || td.childNodes[0].value
+             if (tr[i].id.length === 0 && txtValue.toUpperCase().indexOf(filter) > -1) {
+                 tr[i].style.display = "";
+             } else if (tr[i].classList.contains("ractive") && tr[i].id.length !== 0
+                 && txtValue.toUpperCase().indexOf(filter) > -1) {
+                 tr[i].style.display = "";
+             } else {
+                 tr[i].style.display = "none";
+             }
+         }
+     }
+ }
+ function addField (argument) {
+     const row = document.getElementById(argument)
+     const button = document.getElementById(argument + "-btn")
+     if (button.innerHTML === "SELECT") {
+         row.style.display="table-row"
+         row.classList.add("ractive")
+         button.innerHTML = "CLOSE"
+         button.style.backgroundColor = "red"
+     } else {
+         row.style.display = "none"
+         button.innerHTML = "SELECT"
+         row.classList.remove("ractive")
+         button.style.backgroundColor = "#24454c"
+     }
+ }
+
 

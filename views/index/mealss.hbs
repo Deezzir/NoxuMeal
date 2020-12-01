@@ -1,0 +1,191 @@
+<div class="bar">
+    <a class="active add">Add</a>
+   <a class="list">List All</a>
+</div>
+<div id="addForm"">
+   <div class="container">
+   {{#if message.merror}}
+         <div class="row">
+            <div class="col-25">
+            </div>
+            <div class="col-75">
+                <p style="color: black" id="error">{{message.merror}}</p>
+                <p style="color: black" id="error">{{message.ierror}}</p>
+            </div>
+        </div>
+   {{/if}}
+      <form method="post" enctype="multipart/form-data">
+         <div class="row">
+            <div class="col-25">
+               <label for="title">Title</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="title" name="title" placeholder="Meal Title">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+                <label for="contain">Contains</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="contain" name="contain" placeholder="Ingredients sep by coma">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="category">Category</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="category" name="category" placeholder="Meal Category">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="price">Price</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="price" name="price" placeholder="Price">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="cook">Time</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="cook" name="cook" placeholder="Cooking Time">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="cal">Calories</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="cal" name="cal" placeholder="Calories">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="serv">Servings</label>
+            </div>
+            <div class="col-75">
+                <select id="serv" name="serv">
+                    <option value="1">1 Serving</option>
+                    <option value="2">2 Servings</option>
+                    <option value="3">3 Servings</option>
+                    <option value="4">4 Servings</option>
+                    <option value="5">5 Servings</option>
+                    <option value="6">6 Servings</option>
+                </select>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="top">Top</label>
+            </div>
+            <div class="col-75">
+               <select id="top" name="top">
+                  <option value="true">Top Meal</option>
+                  <option value="false">Not Top Meal</option>
+               </select>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="desc">Description</label>
+            </div>
+            <div class="col-75">
+               <textarea id="desc" name="desc" placeholder="Write Description" style="height:150px"></textarea>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+            </div>
+            <div class="col-75">
+               <div class="upload-btn-wrapper">
+                  <button class="btna">Upload a file</button>
+                  <input type="file" name="image"/>
+               </div>
+            </div>
+         </div>
+         <input type='hidden' name='action' value='addMeal'/>
+         <div class="row">
+            <div class="col-25">
+            </div>
+            <div class="col-75">
+               <input type="submit" value="Submit">
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+
+
+<div id="table" style="overflow-x:auto; display:none">
+   <br>
+   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for meal by title">
+   <br>
+   <table id="myTable">
+
+      <tbody>
+         <tr>
+            <th>Title</th>
+            <th>Contains</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Cook Time</th>
+            <th>Servings</th>
+            <th>Cals</th>
+            <th>Top</th>
+            <th></th>
+         </tr>
+         {{#each data }}
+         <tr>
+            <td>{{title}}</td>
+            <td>{{#each contains}}
+               {{this}}
+               {{/each}}
+            </td>
+            <td>{{desc}}</td>
+            <td>{{category}}</td>
+            <td>{{price}}</td>
+            <td>{{time}}</td>
+            <td>{{serving}}</td>
+            <td>{{calPerS}}</td>
+            <td>{{top}}</td>
+             <td><a class="btnl" id="{{title}}-btn" onclick="addField('{{title}}');">SELECT</a></td>
+         </tr>
+         <tr id="{{title}}" style="display: none">
+         <form method="post" action="/update">
+            <td>{{title}}</td>
+             <input type='hidden' name='title' value="{{title}}"/>
+            <td><input class="input-field" type="text" name="contain" placeholder="Ingredients" value="{{contains}}"></td>
+            <td><input class="input-field" type="text" name="desc" placeholder="Description" value="{{desc}}"></td>
+            <td><input class="input-field" type="text" name="category" placeholder="First Name" value="{{category}}"></td>
+            <td><input class="input-field" type="text" name="price" placeholder="Price" value="{{price}}"></td>
+            <td><input class="input-field" type="text" name="cook" placeholder="Cook Time" value="{{time}}"></td>
+            <td><select id="serv" name="serv">
+                    <option value="{{serving}}" selected hidden>{{serving}}</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </td>
+            <td><input class="input-field" type="text" name="cal" placeholder="Calories" value="{{calPerS}}"></td>
+            <td><select id="top" name="top">
+                    <option value="{{top}}" selected hidden>{{top}}</option>
+                    <option value="true">Top Meal</option>
+                    <option value="false">Not Top Meal</option>
+                </select>
+            </td>
+            <td><button type="submit" formaction="/delete" style="color:black; width:100%">DELETE</button>
+            <button style="color: black; width:100%">UPDATE</button></td>
+          </form>
+         </tr>
+         {{/each}}
+      </tbody>
+   </table>
+</div>

@@ -1,15 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const meals = require('../public/javascripts/meals')
+const mealModel = require("../models/Meals")
+const meals = require("../models/meals_f")
+
+//mealModel.insertMany(meals.getDB()).then(function(){
+//    console.log("Data inserted")
+//}).catch(function(error){
+//    console.log(error)
+//});
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index/index',
-      {title: "Main Page",
-              file: "index.css",
-              data: meals.getDB(),
-              layout: 'main'
+router.get('/', async function(req, res, next) {
+    let Meals = await mealModel.find({top: true}).lean();
+    res.render('index/index',
+        {title: "Main Page",
+                file: "index.css",
+                data: Meals,
+                layout: 'main'
       });
 });
 
@@ -23,7 +31,7 @@ router.get('/dash', function(req, res, next) {
                 title: "DashBoard"
             });
     } else {
-        res.sendStatus(404);
+        return res.status(401).json({status: 'Please log in'})
     }
 });
 
@@ -35,8 +43,8 @@ router.get('/sdash', function(req, res, next) {
                 file: "dash.css",
                 title: "DashBoard"
             });
-    }else {
-        res.sendStatus(404);
+    } else {
+        return res.status(401).json({status: 'Please log in'});
     }
 });
 
@@ -50,16 +58,29 @@ router.get('/about', function(req, res, next) {
 });
 
 /* GET menu page. */
-router.get('/menu', function(req, res, next) {
-  res.render('index/menu',
+router.get('/menu', async function(req, res, next) {
+    let Meals = await mealModel.find({top: false}).lean();
+    res.render('index/menu',
       {title: "Menu Page",
               file: "menu.css",
-              data: meals.getDB(),
+              data: Meals,
               layout: 'main'
       });
 });
 
+router.get('/meals', async function(req, res, next) {
+    let Meals = await mealModel.find().lean();
+    res.render('index/mealss',
+        {title: "Manage",
+            layout: 'main',
+            file: "meals.css",
+            data: Meals
+        });
+});
+
 router.get('/Logout', function(req, res, next) {
+    req.session.user = null;
+    res.locals.user = null;
     req.session.destroy();
     res.redirect("/")
 });
