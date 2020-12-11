@@ -9,24 +9,25 @@
 </div>
 
 <div class="info">
-    <center><h2>Classic Meals</h2></center>
-    <hr style="color:black"><br>
+    <div class="border1 f">CLASSIC MEALS</div>
     <div class="grid2_2-container">
         {{#each data }}
             {{#unless this.top }}
-                <div class="card">
-                    <img src="{{img}}" alt="Food" style="width:100%;">
-                    <div class="container">
-                        <h3>{{title}}</h3>
-                        <p>With
-                            {{#each contains}}
-                                {{this}}
-                            {{/each}}
-                        </p>
-                        <br>
-                        <h4>Price: {{price}}$</h4>
+                <a href="/meal?mealId={{title}}" style="text-decoration: none" href="">
+                    <div class="card">
+                        <img src="{{img}}" alt="Food" style="width:100%;">
+                        <div class="container">
+                            <h3>{{title}}</h3>
+                            <p>With
+                                {{#each contains}}
+                                    {{this}}
+                                {{/each}}
+                            </p>
+                            <br>
+                            <h4>Price: {{price}}$</h4>
+                        </div>
                     </div>
-                </div>
+                </a>
             {{/unless}}
         {{else}}
             <center><h3>No Meals</h3></center>

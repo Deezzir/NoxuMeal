@@ -13,6 +13,21 @@
     background-size: cover;
 }
 
+.border1 {
+    background-color: #24454c;
+    color: #def2f3;
+    border-radius: 5px;
+    padding: 18px;
+    font-size: 1.3rem;
+    letter-spacing: 8px;
+    width: 65%;
+    margin: 5px auto 10px auto;
+}
+
+.f {
+    width: 35%;
+}
+
 .caption {
     position: absolute;
     right: 0;

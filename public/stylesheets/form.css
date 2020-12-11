@@ -18,6 +18,11 @@
     width: 70%;
 }
 
+.shopping-cart h3 {
+    color: #24454c;
+    padding: 25px 100px;
+}
+
 .input-container input:focus,
 .input-container input:active {
     outline: none;
@@ -68,10 +73,19 @@
     z-index: 9999;
 }
 
+.cart {
+    z-index: 9899;
+}
+
 .form-container {
     max-width: 400px;
     padding: 10px;
     background-color: #24454c;
+}
+
+.no {
+    max-width: none;
+    width: 100%;
 }
 
 .form-container .btn,
@@ -153,6 +167,175 @@
     background: #def2f3;
     color: black;
     outline: none;
+}
+
+.shopping-cart {
+    margin: 0 auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    width: 100%;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 10px 25px;
+    color: #5E6977;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.item {
+    padding: 20px 30px;
+    height: 90px;
+    display: flex;
+}
+
+.item:nth-child(2) {
+    border-top:  1px solid #E1E8EE;
+}
+
+.item:nth-child(3) {
+    border-top:  1px solid #E1E8EE;
+    border-bottom:  1px solid #E1E8EE;
+}
+
+.buttons {
+    position: relative;
+    padding-top: 15px;
+    margin-right: 30px;
+}
+.delete-btnn {
+    display: inline-block;
+    Cursor: pointer;
+}
+
+.delete-btnn {
+    width: 18px;
+    height: 17px;
+    background: url("../images/delete-icn.svg") no-repeat center;
+}
+
+.delete-btnn:hover {
+    background-color: red;
+}
+
+.is-active {
+    animation-name: animate;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(28);
+    animation-fill-mode: forwards;
+}
+
+@keyframes animate {
+    0%   { background-position: left;  }
+    50%  { background-position: right; }
+    100% { background-position: right; }
+}
+
+
+.description {
+    padding-top: 18px;
+    width: 115px;
+    margin-right: 20px;
+}
+
+.description span {
+    display: block;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #43484D;
+    font-weight: 400;
+}
+
+.update-btn,
+.close-btn {
+    margin-right: 5px;
+    float: right;
+    background-color: #1093a7;
+    color: #def2f3;
+    outline: none;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.quantity {
+    padding-top: 15px;
+    margin-right: 40px;
+}
+.quantity input[type=text] {
+    padding: 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+button[class*=btnn] {
+    width: 30px;
+    height: 30px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+.minus-btnn img {
+    margin-bottom: 3px;
+}
+.plus-btnn img {
+    margin-top: 2px;
+}
+
+button:focus,
+input:focus {
+    outline:0;
+}
+
+.total-price {
+    width: 83px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+@media (max-width: 800px) {
+    .shopping-cart {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    .item {
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .pp img {
+        width: 50%;
+    }
+    .pp,
+    .quantity,
+    .description {
+        width: 100%;
+        text-align: center;
+        margin: 6px 0;
+    }
+    .buttons {
+        margin-right: 20px;
+    }
 }
 
 @media (max-width: 400px) {

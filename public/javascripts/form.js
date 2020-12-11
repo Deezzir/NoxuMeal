@@ -27,6 +27,8 @@ function openForms(form){
         openForm("login");
     } else if(form === "register"){
         openForm("register");
+    } else if(form === "cart") {
+        openForm("cart")
     }
 }
 
@@ -93,6 +95,36 @@ function clearForm(form) {
          row.classList.remove("ractive")
          button.style.backgroundColor = "#24454c"
      }
+ }
+
+ function Minus(id) {
+     let input = document.getElementById(id)
+     let value = parseInt(input.value.toString())
+
+     console.log(typeof value)
+     console.log(value)
+
+     if(value > 1) {
+         value -= 1
+     } else {
+         value = 0
+     }
+
+     input.value = value
+ }
+
+function Plus(id) {
+     let input = document.getElementById(id)
+     let value = parseInt(input.value.toString())
+
+     if(value < 100) {
+         value = value + 1
+     } else {
+         value = 100
+     }
+
+     input.value = value
+
  }
 
 

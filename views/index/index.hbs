@@ -14,8 +14,7 @@
 </div>
 
 <div class="info">
-    <center><h2>How it Works</h2></center>
-    <hr style="color:black"><br>
+    <div class="border1 f">HOW IT WORKS</div>
     <div class="grid4-container">
         <div class="info-card">
             <img class="info-img" src="/images/main.jpg" alt="Food">
@@ -36,7 +35,7 @@
             </div>
         </div>
         <div class="info-card">
-            <img class="info-img" src="/images/delivery.jpeg" alt="Food"">
+            <img class="info-img" src="/images/delivery.jpeg" alt="Food">
             <div class="content">
                 <h3> Free delivery </h3>
                 <p>
@@ -73,19 +72,23 @@
     <div class="grid3-container">
         {{#each data }}
         {{#if this.top }}
-        <div class="card">
-        <img src="{{img}}" alt="Food" style="width:100%;">
-            <div class="container">
-                <h3>{{title}}</h3>
-                <p>With
-                    {{#each contains}}
-                        {{this}}
-                    {{/each}}
-                </p>
-                <br>
-                <h4>Price: {{price}}$</h4>
+            <a href="/meal?mealId={{title}}" style="text-decoration: none" href="">
+                <div class="card">
+                <img src="{{img}}" alt="Food" style="width:100%;">
+                <div class="container">
+                    <h3>{{title}}</h3>
+                    <p>With
+                        {{#each contains}}
+                            {{this}}
+                        {{/each}}
+                    </p>
+                    <br>
+                    <div>
+                        <h4 style="display: inline-block">Price: {{price}}$</h4>
+                    </div>
+                </div>
             </div>
-        </div>
+            </a>
         {{/if}}
         {{else}}
             <center><h3>No Meals</h3></center>

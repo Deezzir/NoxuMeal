@@ -1,0 +1,50 @@
+<div class="form-popup cart" id="cart">
+    <form method="post" action="" class="form-container no">
+        <div class="shopping-cart">
+            <div class="title">
+                Cart
+                    <a class="close-btn" style="background-color: red" onclick="closeForm('cart');">Close</a>
+                {{#if cart.items}}
+                    <button type="submit" formaction="/updateCart" class="update-btn">Update</button>
+                    <button type="submit" formaction="/clearCart" class="update-btn">Clear Cart</button>
+                {{/if}}
+            </div>
+
+            {{#if cart.items}}
+                {{#each cart.items}}
+                        <div class="item">
+                            <input type="hidden" name="dmeal" value="{{this.title}}">
+                            <div class="buttons">
+                                <button type="submit" formaction="/removeFromCart?mealId={{this.title}}" class="delete-btnn"></button>
+                            </div>
+
+                            <div class="description">
+                                <span>{{this.title}}</span>
+                            </div>
+
+                            <div class="quantity">
+                                <button class="plus-btnn" id="plus-{{this.title}}" type="button" name="button"
+                                        onclick="Plus('qty-{{this.title}}')">
+                                    <img src="/images/plus.svg" alt="" />
+                                </button>
+                                <input type="text" id="qty-{{this.title}}" name="qty" value={{this.qty}}>
+                                <button class="minus-btnn" id="minus-{{this.title}}" type="button" name="button"
+                                        onclick="Minus('qty-{{this.title}}')">
+                                    <img src="/images/minus.svg" alt="" />
+                                </button>
+                            </div>
+
+                            <div class="total-price">{{this.totals}}$</div>
+                        </div>
+                {{/each}}
+            {{else}}
+                <h3>The Cart Is Empty</h3>
+            {{/if}}
+        </div>
+        <br>
+        <hr>
+
+        <h3>Total: {{cart.totals}}$</h3>
+        {{#if cart.items}}<button type="submit" formaction="/checkout" class="btn">Checkout</button>{{/if}}
+    </form>
+</div>

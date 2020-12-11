@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const mealModel = require("../models/Meals")
-const meals = require("../models/meals_f")
+const Cart = require("../public/javascripts/cart")
+//const meals = require("../models/meals_f")
 
 //mealModel.insertMany(meals.getDB()).then(function(){
 //    console.log("Data inserted")
@@ -66,6 +67,20 @@ router.get('/menu', async function(req, res, next) {
               data: Meals,
               layout: 'main'
       });
+});
+
+
+
+router.get('/meal', async function(req, res, next) {
+    let Meal = await mealModel.findOne({title: req.query.mealId}).lean()
+    let In = Cart.inCart(req.query.mealId,(req.session.cart) ? req.session.cart : null);
+    res.render('index/meal',
+        {title: "Meal Page",
+            file: "meal.css",
+            layout: 'main',
+            meal: Meal,
+            In: In
+        });
 });
 
 router.get('/meals', async function(req, res, next) {

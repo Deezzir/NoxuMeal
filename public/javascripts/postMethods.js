@@ -5,6 +5,7 @@ const path = require("path");
 
 const bcrypt = require('bcrypt')
 const userModel = require("../../models/Users")
+const Cart = require("./cart")
 const validation = require('./validation')
 
 const mealModel = require('../../models/Meals')
@@ -37,6 +38,42 @@ const postMethods = {
             });
     },
 
+    checkout(res, req) {
+        let cart = (req.session.cart) ? req.session.cart : null;
+        let orders = ""
+
+        cart.items.forEach((item) => {
+            orders += `Meal: ${item.title}, QTY: ${item.qty}, Price: ${item.price}<br>`
+        })
+
+        const msg = {
+            to: req.session.user.email,
+            from: process.env.EMAIL,
+            subject: 'Order Checkout',
+            html:
+                `Thank you for your Order <br> 
+                        ${orders}
+                        Total: ${cart.totals}$<br>`
+        };
+
+        sgMail.send(msg)
+            .then(() => {
+                console.log("here")
+                Cart.emptyCart(req)
+                res.redirect("/");
+            })
+            .catch(async function(error){
+                console.log(`Error ${error}`);
+                let Meals = await mealModel.find().lean();
+                res.render("index/index", {
+                    title: "Main Page",
+                    file: "index.css",
+                    data: Meals,
+                    layout: 'main',
+                });
+            });
+    },
+
     async renderError(res, req, params) {
         let Meals = await mealModel.find().lean();
         res.render(params.view, {
@@ -48,6 +85,32 @@ const postMethods = {
             message: params.message,
             values: req.body
         });
+    },
+
+    addToCart(req, res) {
+        mealModel.findOne({title: req.query.mealId}).then(prod => {
+            Cart.addToCart(prod, 1, (req.session.cart) ? req.session.cart : null);
+            res.redirect(`/meal?mealId=${req.query.mealId}`)
+        }).catch(err => {
+            console.log(err)
+        });
+    },
+
+    clearCart(req, res, link) {
+        Cart.emptyCart(req);
+        res.redirect(`/${link}`);
+    },
+
+    removeFromCart(req, res, link) {
+        Cart.removeFromCart(req.query.mealId, (req.session.cart) ? req.session.cart : null)
+        res.redirect(`/${link}`)
+    },
+
+    updateCart(req, res, link) {
+        let titles =  (!Array.isArray(req.body["dmeal"])) ? [req.body["dmeal"]] : req.body["dmeal"];
+        let qtys = (!Array.isArray(req.body["qty"])) ? [req.body["qty"]] : req.body["qty"];
+        Cart.updateCart(titles, qtys,  (req.session.cart) ? req.session.cart : null)
+        res.redirect(`/${link}`)
     },
 
     login(res, req, params) {
@@ -66,6 +129,12 @@ const postMethods = {
                         .then((match) => {
                             if (match) {
                                 req.session.user = user;
+                                if(!req.session.cart) {
+                                    req.session.cart = {
+                                        items: [],
+                                        totals: 0.00,
+                                    };
+                                }
                                 if (req.session.user.super_user) {
                                     res.redirect(`/sdash`)
                                 } else {
@@ -115,7 +184,6 @@ const postMethods = {
     },
 
     addMeal(res,req) {
-        console.log(req.body)
         const meal = new mealModel({
             contains: req.body.contain.split(','),
             top: req.body.top,

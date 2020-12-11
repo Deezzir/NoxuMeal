@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="left-column">
+        <img data-image="black" src="{{meal.img}}" alt="">
+    </div>
+
+    <div class="right-column">
+        <div class="product-description">
+            <span>Meal</span>
+            <h1>{{meal.title}}</h1>
+            <p>{{meal.desc}}</p>
+        </div>
+
+        <div class="product-details">
+            <div class="product-info">
+                <span>Servings</span>
+                <button>{{meal.serving}} servings</button>
+            </div>
+
+            <div class="product-info">
+                <span>Calories</span>
+                <button>{{meal.calPerS}} /serving</button>
+            </div>
+
+            <div class="product-info">
+                <span>Cooking Time</span>
+                <button>{{meal.time}} minutes</button>
+            </div>
+
+            <div class="product-info">
+                <span>With</span>
+                <button>{{#each meal.contains}}{{this}} {{/each}}</button>
+            </div>
+        </div>
+
+        <div class="product-price">
+            <span>{{meal.price}}$</span>
+            {{#if user}}
+                {{#if In}}
+                    <a class="a-btn">Already in Cart</a>
+                {{else}}
+                    <form method="post" action="/meal?mealId={{meal.title}}">
+                    <input type="submit" value="Add to cart">
+                    </form>
+                {{/if}}
+            {{else}}
+                <span>Login to add to the cart</span>
+            {{/if}}
+        </div>
+    </div>
+</div>

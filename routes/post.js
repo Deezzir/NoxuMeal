@@ -22,7 +22,6 @@ router.post("/about", (req, res) => {
         file: "about.css"
     };
     postMethods.postInfo(res, req, params);
-
 });
 
 router.post("/menu", (req, res) => {
@@ -63,5 +62,25 @@ router.post("/delete", (req, res) => {
     postMethods.postInfo(res, req, params);
 });
 
+router.post("/clearCart", (req, res, next) => {
+    postMethods.clearCart(req, res, req.headers.referer.substring(req.headers.referer.lastIndexOf('/') + 1))
+});
+
+router.post("/removeFromCart", (req, res, next) => {
+    postMethods.removeFromCart(req, res, req.headers.referer.substring(req.headers.referer.lastIndexOf('/') + 1))
+});
+
+router.post("/updateCart", (req, res, next) => {
+    console.log(req.body)
+    postMethods.updateCart(req, res, req.headers.referer.substring(req.headers.referer.lastIndexOf('/') + 1))
+});
+
+router.post("/meal", (req, res) => {
+    postMethods.addToCart(req, res)
+});
+
+router.post("/checkout", (req, res) => {
+    postMethods.checkout(res, req)
+});
 
 module.exports = router;

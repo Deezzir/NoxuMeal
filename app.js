@@ -68,6 +68,7 @@ app.use(function(req,res,next){
     return next(new Error('Error occured while creating a session'))
   }
   res.locals.user = req.session.user;
+  res.locals.cart = req.session.cart;
   next();
 });
 

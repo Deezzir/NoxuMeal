@@ -58,6 +58,15 @@
     letter-spacing: 10px;
 }
 
+.add-button {
+    float: right;
+    color: #24454c;
+    border-radius: 4px;
+    text-decoration: none;
+    background-color: transparent;
+    transition: 0.2s ease-out;
+}
+
 .border1 {
     background-color: #24454c;
     color: #def2f3;
@@ -66,7 +75,11 @@
     font-size: 1.3rem;
     letter-spacing: 8px;
     width: 65%;
-    margin: 0 auto ;
+    margin: 5px auto ;
+}
+
+.f {
+    width: 30%;
 }
 
 .caption1 div.border {

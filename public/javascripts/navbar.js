@@ -15,6 +15,7 @@ window.onload = function () {
         logo.classList.add("cntr");
         closeForm("register");
         closeForm("login");
+        closeForm("cart")
         on();
     }
 
