@@ -54,12 +54,14 @@ class Cart {
 
     static inCart(title = "", cart) {
         let found = false;
-        cart.items.forEach(item => {
-            if(item.title === title) {
-                found = true;
-            }
-        });
-        this.calculateTotals(cart)
+        if(cart) {
+            cart.items.forEach(item => {
+                if(item.title === title) {
+                    found = true;
+                }
+            });
+            this.calculateTotals(cart)
+        }
         return found;
     }
 

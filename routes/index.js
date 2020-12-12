@@ -18,7 +18,6 @@ router.get('/', async function(req, res, next) {
         {title: "Main Page",
                 file: "index.css",
                 data: Meals,
-                qty: postMethods.getQTY(req),
                 layout: 'main'
       });
 });
@@ -31,7 +30,6 @@ router.get('/dash', function(req, res, next) {
                 layout: 'main',
                 file: "dash.css",
                 title: "DashBoard",
-                qty: postMethods.getQTY(req),
             });
     } else {
         return res.status(401).json({status: 'Please log in'})
@@ -44,7 +42,6 @@ router.get('/sdash', function(req, res, next) {
             {
                 layout: 'main',
                 file: "dash.css",
-                qty: postMethods.getQTY(req),
                 title: "DashBoard"
             });
     } else {
@@ -58,7 +55,6 @@ router.get('/about', function(req, res, next) {
       {title: "About Page",
               file: "about.css",
               layout: 'main',
-              qty: postMethods.getQTY(req),
       });
 });
 
@@ -70,7 +66,6 @@ router.get('/menu', async function(req, res, next) {
               file: "menu.css",
               data: Meals,
               layout: 'main',
-              qty: postMethods.getQTY(req),
       });
 });
 
@@ -85,7 +80,6 @@ router.get('/meal', async function(req, res, next) {
             layout: 'main',
             meal: Meal,
             In: In,
-            qty: postMethods.getQTY(req),
         });
 });
 
@@ -96,7 +90,6 @@ router.get('/meals', async function(req, res, next) {
             layout: 'main',
             file: "meals.css",
             data: Meals,
-            qty: postMethods.getQTY(req),
         });
 });
 

@@ -13,9 +13,7 @@
     <list default="true" id="f4603e0c-cf7f-4a30-a68f-e0687ed60d7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/javascripts/postMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/postMethods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/navbar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/navbar.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +90,8 @@
       <workItem from="1606689482331" duration="36794000" />
       <workItem from="1606785520424" duration="644000" />
       <workItem from="1607613132986" duration="33146000" />
+      <workItem from="1607777162881" duration="359000" />
+      <workItem from="1607778797561" duration="619000" />
     </task>
     <servers />
   </component>

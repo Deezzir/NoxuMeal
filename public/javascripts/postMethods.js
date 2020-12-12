@@ -38,13 +38,6 @@ const postMethods = {
             });
     },
 
-    getQTY(req) {
-        let cart = (req.session.cart) ? req.session.cart : null;
-        let qty = 0;
-        if(cart) { qty = cart.items.length }
-        return qty
-    },
-
     checkout(res, req) {
         let cart = (req.session.cart) ? req.session.cart : null;
         let orders = ""
