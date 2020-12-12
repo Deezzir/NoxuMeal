@@ -3,7 +3,7 @@ const router = express.Router();
 
 const mealModel = require("../models/Meals")
 const Cart = require("../public/javascripts/cart")
-//const meals = require("../models/meals_f")
+const postMethods = require("../public/javascripts/postMethods")
 
 //mealModel.insertMany(meals.getDB()).then(function(){
 //    console.log("Data inserted")
@@ -18,6 +18,7 @@ router.get('/', async function(req, res, next) {
         {title: "Main Page",
                 file: "index.css",
                 data: Meals,
+                qty: postMethods.getQTY(req),
                 layout: 'main'
       });
 });
@@ -29,7 +30,8 @@ router.get('/dash', function(req, res, next) {
                 userID: req.session.user._id,
                 layout: 'main',
                 file: "dash.css",
-                title: "DashBoard"
+                title: "DashBoard",
+                qty: postMethods.getQTY(req),
             });
     } else {
         return res.status(401).json({status: 'Please log in'})
@@ -42,6 +44,7 @@ router.get('/sdash', function(req, res, next) {
             {
                 layout: 'main',
                 file: "dash.css",
+                qty: postMethods.getQTY(req),
                 title: "DashBoard"
             });
     } else {
@@ -54,7 +57,8 @@ router.get('/about', function(req, res, next) {
   res.render('index/about',
       {title: "About Page",
               file: "about.css",
-              layout: 'main'
+              layout: 'main',
+              qty: postMethods.getQTY(req),
       });
 });
 
@@ -65,7 +69,8 @@ router.get('/menu', async function(req, res, next) {
       {title: "Menu Page",
               file: "menu.css",
               data: Meals,
-              layout: 'main'
+              layout: 'main',
+              qty: postMethods.getQTY(req),
       });
 });
 
@@ -79,7 +84,8 @@ router.get('/meal', async function(req, res, next) {
             file: "meal.css",
             layout: 'main',
             meal: Meal,
-            In: In
+            In: In,
+            qty: postMethods.getQTY(req),
         });
 });
 
@@ -89,7 +95,8 @@ router.get('/meals', async function(req, res, next) {
         {title: "Manage",
             layout: 'main',
             file: "meals.css",
-            data: Meals
+            data: Meals,
+            qty: postMethods.getQTY(req),
         });
 });
 

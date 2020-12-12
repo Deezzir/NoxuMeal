@@ -237,6 +237,18 @@ nav .login a {
     }
 }
 
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    padding: 1px 7px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
 @media (max-width: 500px) {
     nav .cntr {
         font-size: 1rem;

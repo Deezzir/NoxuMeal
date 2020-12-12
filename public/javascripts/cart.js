@@ -66,8 +66,8 @@ class Cart {
     static calculateTotals(cart) {
         cart.totals = 0.00;
         cart.items.forEach(item => {
-            item.totals = Math.round((item.price * item.qty + Number.EPSILON) * 100) / 100;
-            cart.totals += Math.round((item.price * item.qty + Number.EPSILON) * 100) / 100;
+            item.totals = Math.round(((item.price * item.qty) + Number.EPSILON) * 100) / 100;
+            cart.totals += Math.round((item.total + Number.EPSILON) * 100) / 100;
         });
     }
 
