@@ -76,10 +76,14 @@ const postMethods = {
 
     async renderError(res, req, params) {
         let Meals = await mealModel.find().lean();
+        let Meal = await mealModel.findOne({title: req.query.mealId}).lean()
+        let In = Cart.inCart(req.query.mealId,(req.session.cart) ? req.session.cart : null);
         res.render(params.view, {
             title: params.title,
             file: params.file,
             data: Meals,
+            meal: Meal,
+            In : In,
             kak: params.action,
             layout: 'main',
             message: params.message,
