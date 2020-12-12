@@ -43,7 +43,7 @@ const postMethods = {
         let orders = ""
 
         cart.items.forEach((item) => {
-            orders += `Meal: ${item.title}, QTY: ${item.qty}, Price: ${item.price}<br>`
+            orders += `Meal: ${item.title}, QTY: ${item.qty}, Price: ${item.price}$<br>`
         })
 
         const msg = {

@@ -41,10 +41,10 @@
                 <h3>The Cart Is Empty</h3>
             {{/if}}
         </div>
-        <br>
-        <hr>
-
-        <h3>Total: {{cart.totals}}$</h3>
-        {{#if cart.items}}<button type="submit" formaction="/checkout" class="btn">Checkout</button>{{/if}}
+        {{#if cart.items}}
+            <br><hr>
+            <h3>Total: {{cart.totals}}$</h3>
+            <button type="submit" formaction="/checkout" class="btn">Checkout</button>
+        {{/if}}
     </form>
 </div>
