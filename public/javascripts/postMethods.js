@@ -89,7 +89,10 @@ const postMethods = {
 
     addToCart(req, res) {
         mealModel.findOne({title: req.query.mealId}).then(prod => {
-            Cart.addToCart(prod, 1, (req.session.cart) ? req.session.cart : null);
+            let cart = (req.session.cart) ? req.session.cart : null;
+            if(cart) {
+                Cart.addToCart(prod, 1, cart);
+            }
             res.redirect(`/meal?mealId=${req.query.mealId}`)
         }).catch(err => {
             console.log(err)
