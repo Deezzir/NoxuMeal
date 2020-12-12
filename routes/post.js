@@ -62,6 +62,15 @@ router.post("/delete", (req, res) => {
     postMethods.postInfo(res, req, params);
 });
 
+router.post("/meal", (req, res) => {
+    const params = {
+        view: "index/meal",
+        title: "Meal Page",
+        file: "meal.css"
+    };
+    postMethods.postInfo(res, req, params);
+});
+
 router.post("/clearCart", (req, res, next) => {
     postMethods.clearCart(req, res, req.headers.referer.substring(req.headers.referer.lastIndexOf('/') + 1))
 });
@@ -75,7 +84,7 @@ router.post("/updateCart", (req, res, next) => {
     postMethods.updateCart(req, res, req.headers.referer.substring(req.headers.referer.lastIndexOf('/') + 1))
 });
 
-router.post("/meal", (req, res) => {
+router.post("/addMeal", (req, res) => {
     postMethods.addToCart(req, res)
 });
 

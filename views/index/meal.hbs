@@ -38,7 +38,7 @@
                 {{#if In}}
                     <a class="a-btn">Already in Cart</a>
                 {{else}}
-                    <form method="post" action="/meal?mealId={{meal.title}}">
+                    <form method="post" action="/addMeal?mealId={{meal.title}}">
                     <input type="submit" value="Add to cart">
                     </form>
                 {{/if}}

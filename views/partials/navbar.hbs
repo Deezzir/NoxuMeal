@@ -17,7 +17,6 @@
                         <div class="dropdown">
                             <a  class="nav-button" data-toggle="modal">
                                 {{user.first_name}} {{user.last_name}}
-                                {{#if cart.items}}<span class="badge">{{qty}}</span>{{/if}}
                                 <i class="fa fa-caret-down"></i>
                             </a>
                             <div class="dropdown-content">
@@ -29,7 +28,7 @@
                                 {{/if}}
                                     <div>
                                         <a href="#" onclick="openForm('cart'); return false;">
-                                            Cart{{#if cart.items}}<span class="badge">{{qty}}</span>{{/if}} </a>
+                                            Cart</a>
                                     </div>
                             </div>
                         </div>
