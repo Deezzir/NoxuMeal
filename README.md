@@ -1,4 +1,3 @@
 # NoxuMeal
-## My firsh website 
 
-Written in Vanilla JS and CSS
+My firsh website. Written in Vanilla JS and CSS
